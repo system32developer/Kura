@@ -7,7 +7,7 @@ Kura is a Discord Bot Core for Moderation.
 3. Run the Jar File.
 
 ```bash
-java -jar Kura.jar
+java -jar Kura-VERSION.jar
 ```
 
 ## **Contributing**
