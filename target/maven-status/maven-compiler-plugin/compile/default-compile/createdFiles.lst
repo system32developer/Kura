@@ -1,0 +1,6 @@
+com\system32\Kura\bot\Builder.class
+com\system32\Kura\Kura.class
+com\system32\Kura\database\DatabaseManager.class
+com\system32\Kura\utils\Color.class
+com\system32\Kura\utils\Console.class
+com\system32\Kura\utils\Other.class
