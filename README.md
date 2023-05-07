@@ -8,7 +8,6 @@ Kura is a Discord Bot Core for Moderation.
 
 > Optional: You can change the timezone of the JDA stuff by adding the following argument to the command line. 
 
-
 ```bash
 java -Duser.timezone=America/Lima -jar Kura-VERSION.jar
 ```
