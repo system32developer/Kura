@@ -1,7 +1,6 @@
 package com.system32.Kura.utils;
 
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
+import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,26 +10,26 @@ import static com.system32.Kura.utils.Other.ExportResource;
 
 public class ResourcesManager {
 
-    public static Config setupConfig() throws Exception, InvocationTargetException, IOException {
+    public static YamlFile setupConfig() throws Exception, InvocationTargetException, IOException {
         String folder = new File(".").getCanonicalPath();
-        File conf = new File(folder, "/"+ "app.conf");
+        File conf = new File(folder, "/"+ "config.yml");
         if (!conf.exists()) {
             Console.sendLogNoConfig("Config", "INFO", "Config file not found, creating it");
-            return ConfigFactory.parseFile(new File(ExportResource("/app.conf")));
+            return new YamlFile(new File(ExportResource("/config.yml")));
         }else{
             Console.sendLogNoConfig("Config", "INFO", "Config file found, loading it");
-            return ConfigFactory.parseFile(conf);
+            return new YamlFile(conf);
         }
     }
-    public static Config setupLanguage() throws Exception, InvocationTargetException, IOException {
+    public static YamlFile setupLanguage() throws Exception, InvocationTargetException, IOException {
         String folder = new File(".").getCanonicalPath();
-        File conf = new File(folder, "/"+ "lang.conf");
+        File conf = new File(folder, "/"+ "lang.yml");
         if (!conf.exists()) {
             Console.sendLogNoConfig("Language", "INFO", "Lang file not found, creating it");
-            return ConfigFactory.parseFile(new File(ExportResource("/lang.conf")));
+            return new YamlFile(new File(ExportResource("/lang.yml")));
         }else{
             Console.sendLogNoConfig("Language", "INFO", "Lang file found, loading it");
-            return ConfigFactory.parseFile(conf);
+            return new YamlFile(conf);
         }
     }
 }

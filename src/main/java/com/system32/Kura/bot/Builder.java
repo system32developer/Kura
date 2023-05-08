@@ -1,17 +1,23 @@
 package com.system32.Kura.bot;
 
 import com.system32.Kura.Kura;
-import com.typesafe.config.Config;
+import com.system32.Kura.events.CommandEvent;
+import com.system32.Kura.events.BotReadyEvent;
+import com.system32.Kura.events.HelpAutoCompleter;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import org.simpleyaml.configuration.file.YamlFile;
 
 public class Builder {
+
     public static JDA build(){
-        Config config = Kura.getConfig();
+        YamlFile config = Kura.getConfig();
+
         JDABuilder builder = JDABuilder
                 .createDefault(config.getString("bot.token"))
                 .enableIntents(
@@ -28,11 +34,16 @@ public class Builder {
                 .setCompression(Compression.NONE)
                 .setActivity(Activity.playing(config.getString("bot.activity")))
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .addEventListeners(
 
+                .addEventListeners(
+                        new CommandEvent(),
+                        new BotReadyEvent(),
+                        new HelpAutoCompleter()
                 )
 
                 ;
+
+
         return builder.build();
     }
 }

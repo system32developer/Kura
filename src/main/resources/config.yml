@@ -1,0 +1,13 @@
+global:
+  version: '1.0'
+  timezone: 'GMT-5:00'
+  guild: 'default'
+bot:
+  token: 'default'
+  activity: 'Moderating'
+database:
+  name: 'default'
+  ip: '0.0.0.0'
+  port: '3306'
+  username: 'root'
+  password: 'password'
