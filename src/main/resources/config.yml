@@ -8,6 +8,6 @@ bot:
 database:
   name: 'default'
   ip: '0.0.0.0'
-  port: '3306'
+  port: 3306
   username: 'root'
   password: 'password'

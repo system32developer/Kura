@@ -10,6 +10,7 @@ import com.system32.Kura.utils.objects.Command;
 import net.dv8tion.jda.api.JDA;
 import org.simpleyaml.configuration.file.YamlFile;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.util.LinkedList;
 
@@ -20,10 +21,12 @@ public class Kura {
     private static JDA jda;
     private static Connection connection;
     private static LinkedList<Command> commands;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, InvocationTargetException {
         Console.clear();
         config = ResourcesManager.setupConfig();
+        config.load();
         language = ResourcesManager.setupLanguage();
+        language.load();
         if(config==null)
         {
             Console.sendLogNoConfig("Config", "ERROR", "Config file not loaded, stopping all process");
@@ -45,7 +48,6 @@ public class Kura {
             return;
         }
         Console.sendLog("Config", "INFO","Config file loaded, starting bot");
-
         connection = new DatabaseManager(config.getString("database.ip"), config.getInt("database.port"), config.getString("database.name"), config.getString("database.username"), config.getString("database.password")).getConnection();
         CommandManager.setupCommands();
         commands = CommandManager.getCommands();
